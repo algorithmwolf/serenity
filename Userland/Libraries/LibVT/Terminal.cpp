@@ -301,7 +301,7 @@ void Terminal::SGR(Parameters params)
                 m_current_state.attribute.flags |= Attribute::Flags::Negative;
                 break;
             case 8:
-                m_current_state.attribute.flags |= Attribute::Flags::Conceal;
+                m_current_state.attribute.flags |= Attribute::Flags::Concealed;
                 break;
             case 9:
                 m_current_state.attribute.flags |= Attribute::Flags::Struck;
@@ -322,7 +322,7 @@ void Terminal::SGR(Parameters params)
                 m_current_state.attribute.flags &= ~Attribute::Flags::Negative;
                 break;
             case 28:
-                m_current_state.attribute.flags &= ~Attribute::Flags::Conceal;
+                m_current_state.attribute.flags &= ~Attribute::Flags::Concealed;
                 break;
             case 29:
                 m_current_state.attribute.flags &= ~Attribute::Flags::Struck;
