@@ -7,6 +7,7 @@
  */
 
 #include "TerminalWidget.h"
+#include "Attribute.h"
 #include <AK/ByteString.h>
 #include <AK/LexicalPath.h>
 #include <AK/StdLibExtras.h>
@@ -360,6 +361,10 @@ void TerminalWidget::paint_event(GUI::PaintEvent& event)
                     painter.clear_rect(cell_rect, Gfx::Color::Magenta);
             }
 
+            if (has_flag(attribute.flags, VT::Attribute::Flags::Struck)) {
+                // TODO strikethrough
+            }
+
             enum class UnderlineStyle {
                 None,
                 Dotted,
@@ -427,6 +432,10 @@ void TerminalWidget::paint_event(GUI::PaintEvent& event)
 
             if (code_point == ' ')
                 continue;
+
+            if (has_flag(attribute.flags, VT::Attribute::Flags::Concealed)) {
+                continue;
+            }
 
             auto character_rect = glyph_rect(visual_row, column);
 
